@@ -881,6 +881,43 @@ body {
 }
 
 /* === Architecture Section === */
+.refarch-image {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.refarch-img {
+    width: 100%;
+    max-width: 960px;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-md);
+}
+
+.refarch-caption {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 12px;
+}
+
+.refarch-caption a {
+    color: var(--aws-blue);
+    text-decoration: none;
+}
+
+.refarch-caption a:hover {
+    text-decoration: underline;
+}
+
+.arch-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-bottom: 24px;
+    text-align: center;
+}
+
 .arch-diagram {
     background: var(--bg-card);
     border: 1px solid var(--border-light);
