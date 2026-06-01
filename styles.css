@@ -1366,6 +1366,18 @@ body {
     box-shadow: var(--shadow-md);
 }
 
+.kiro-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-section-alt);
+    border-radius: var(--radius-sm);
+    color: var(--aws-blue);
+    margin-bottom: 14px;
+}
+
 .kiro-card h3 {
     font-size: 16px;
     font-weight: 600;
