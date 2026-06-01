@@ -84,3 +84,11 @@ aws cloudfront create-invalidation \
 - 400 AI agent sessions/month per developer via Kiro and autonomous agents
 - Mix of Claude Sonnet, Mistral Large, and Titan models via Bedrock
 - US-East-1 pricing with 1-year savings plans where applicable
+
+## License
+
+Copyright © 2026 Coder, Inc. All rights reserved.
+
+This repository and its contents are provided under the [MIT License](LICENSE). You are free to use, modify, and distribute this material for any purpose, provided the copyright notice and permission notice are included in all copies.
+
+AWS, Amazon Bedrock, Amazon EKS, and related marks are trademarks of Amazon.com, Inc. or its affiliates. Coder and the Coder logo are trademarks of Coder, Inc.
