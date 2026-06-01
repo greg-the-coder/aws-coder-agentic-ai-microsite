@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS + Coder | Agentic AI Development at Enterprise Scale</title>
+    <meta name="description" content="Accelerate AI agent development with Coder's Agent-Ready Workspaces on AWS. Leverage Bedrock, AgentCore, and governed environments for enterprise-grade agentic applications.">
+
+    <link rel="stylesheet" href="/aws+coder/styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23232F3E'/><text x='16' y='22' text-anchor='middle' font-size='14' fill='%23FF9900'>⬡</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <div class="nav-logos">
+                <div class="logo-group">
+                    <svg class="logo-aws" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M29.2 22.7c0 .9.1 1.6.3 2.1.2.5.5 1.1.9 1.7.1.2.2.4.2.5 0 .2-.1.4-.4.6l-1.2.8c-.2.1-.3.2-.5.2-.2 0-.4-.1-.6-.3-.3-.3-.5-.6-.7-1-.2-.3-.4-.7-.7-1.2-1.7 2-3.9 3-6.4 3-1.8 0-3.3-.5-4.3-1.6-1.1-1-1.6-2.4-1.6-4.1 0-1.8.6-3.3 1.9-4.4 1.3-1.1 3-1.7 5.1-1.7.7 0 1.4.1 2.2.2.8.1 1.6.3 2.4.5v-1.6c0-1.6-.3-2.8-1-3.4-.7-.7-1.9-1-3.5-1-.8 0-1.5.1-2.3.3-.8.2-1.6.5-2.3.8-.3.2-.6.3-.7.3-.1.1-.2.1-.3.1-.3 0-.4-.2-.4-.7v-1c0-.4 0-.6.1-.8.1-.1.3-.3.6-.4.8-.4 1.7-.7 2.7-1 1-.2 2.1-.4 3.2-.4 2.5 0 4.3.6 5.4 1.7 1.1 1.1 1.7 2.9 1.7 5.2v6.8h-.1zm-8.8 3.3c.7 0 1.4-.1 2.1-.4.8-.3 1.4-.7 1.9-1.3.3-.4.5-.8.6-1.3.1-.5.2-1.1.2-1.8v-.9c-.6-.2-1.2-.3-1.9-.4-.7-.1-1.3-.1-2-.1-1.4 0-2.4.3-3.1.8-.7.5-1 1.3-1 2.3 0 .9.2 1.6.7 2.1.5.4 1.3.7 2.2.7l.3-.7zm17.4 2.3c-.4 0-.6-.1-.8-.2-.2-.2-.3-.5-.5-.9l-5.2-17c-.1-.5-.2-.8-.2-.9 0-.4.2-.6.6-.6h2c.4 0 .7.1.8.2.2.2.3.5.4.9l3.7 14.6 3.4-14.6c.1-.5.3-.8.4-.9.2-.2.5-.2.9-.2h1.6c.4 0 .7.1.9.2.2.2.3.5.4.9l3.5 14.8 3.8-14.8c.1-.5.3-.8.4-.9.2-.2.5-.2.8-.2h1.9c.4 0 .6.2.6.6 0 .1 0 .3-.1.4 0 .2-.1.4-.2.6l-5.3 17c-.1.5-.3.8-.5.9-.2.2-.5.2-.8.2h-1.7c-.4 0-.7-.1-.9-.2-.2-.2-.3-.5-.4-1l-3.4-14.2-3.4 14.2c-.1.5-.3.8-.4 1-.2.2-.5.2-.9.2h-1.7zm27.9.6c-1.1 0-2.1-.1-3.1-.4-1-.3-1.7-.6-2.2-.9-.3-.2-.5-.4-.5-.6-.1-.2-.1-.4-.1-.5v-1.1c0-.5.2-.7.5-.7.1 0 .3 0 .4.1.1.1.3.1.6.3.8.4 1.6.7 2.5.9.9.2 1.7.3 2.6.3 1.4 0 2.4-.2 3.1-.7.7-.5 1.1-1.2 1.1-2 0-.6-.2-1.1-.6-1.5-.4-.4-1.1-.7-2.2-1.1l-3.1-1c-1.6-.5-2.8-1.3-3.5-2.2-.7-.9-1-2-1-3.1 0-.9.2-1.7.6-2.4.4-.7 1-1.3 1.7-1.8.7-.5 1.5-.9 2.4-1.1.9-.3 1.9-.4 3-.4.5 0 1.1 0 1.6.1.6.1 1.1.2 1.6.3.5.1 1 .3 1.4.5.5.2.8.4 1.1.5.2.1.4.3.5.5.1.2.1.4.1.7v1c0 .5-.2.7-.5.7-.2 0-.5-.1-.9-.3-1.4-.6-3-.9-4.7-.9-1.2 0-2.2.2-2.8.6-.6.4-.9 1.1-.9 1.9 0 .6.2 1.1.7 1.5.4.4 1.3.8 2.4 1.2l3 1c1.6.5 2.7 1.2 3.4 2.1.7.9 1 1.9 1 3 0 .9-.2 1.8-.6 2.5-.4.7-1 1.4-1.7 1.9-.7.5-1.6.9-2.6 1.2-1.1.3-2.1.5-3.3.5z" fill="#ffffff"/>
+                        <path d="M57.4 42.8c-6.7 5-16.5 7.6-24.9 7.6-11.8 0-22.4-4.3-30.4-11.6-.6-.6-.1-1.3.7-.9 8.7 5 19.4 8.1 30.4 8.1 7.5 0 15.7-1.5 23.2-4.7 1.1-.5 2.1.7 1 1.5z" fill="#FF9900"/>
+                        <path d="M60 39.8c-.9-1.1-5.7-.5-7.9-.3-.7.1-.8-.5-.2-.9 3.9-2.7 10.2-1.9 10.9-1 .7.9-.2 7.3-3.8 10.3-.6.5-1.1.2-.9-.4.8-2.1 2.7-6.7 1.9-7.7z" fill="#FF9900"/>
+                    </svg>
+                    <span class="logo-divider">+</span>
+                    <svg class="logo-coder" viewBox="0 0 106 17" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 8.5C0 3.61351 4.15135 0.5 9.85946 0.5C15.5676 0.5 18.7676 3.2027 18.8757 7.18108L13.9459 7.33243C13.8162 5.12703 11.8595 3.67838 9.85946 3.72162C7.11351 3.77568 5.08108 5.6027 5.08108 8.5C5.08108 11.3973 7.11351 13.1919 9.85946 13.1919C11.8595 13.1919 13.773 11.8081 13.9892 9.6027L18.9189 9.71081C18.7892 13.7541 15.3946 16.5 9.85946 16.5C4.32433 16.5 0 13.3649 0 8.5Z" fill="currentColor"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M20.6593 8.5C20.6593 3.67838 24.562 0.5 30.1728 0.5C35.7837 0.5 39.6864 3.65676 39.6864 8.5C39.6864 13.3432 35.7837 16.5 30.1728 16.5C24.562 16.5 20.6593 13.3216 20.6593 8.5ZM25.7404 8.5C25.7404 11.3108 27.5674 13.2351 30.1728 13.2351C32.7999 13.2351 34.6053 11.3541 34.6053 8.5C34.6053 5.64595 32.7783 3.67838 30.1728 3.67838C27.5674 3.67838 25.7404 5.68919 25.7404 8.5Z" fill="currentColor"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M41.4269 16.0676V0.932454H47.6971C53.7728 0.932454 57.8593 3.76489 57.8593 8.50002C57.8593 13.2352 53.7728 16.0676 47.6971 16.0676H41.4269ZM46.3998 13.0406H47.4809C50.6809 13.0406 52.8215 11.3973 52.8215 8.50002C52.8215 5.60273 50.6809 3.93786 47.4809 3.93786H46.3998V13.0406Z" fill="currentColor"/>
+                        <path d="M64.5407 4.06759H72.3245V0.932454H59.611V16.0676H72.4758V12.8243H64.5407V9.84056H71.3515V6.96489H64.5407V4.06759Z" fill="currentColor"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M84.8971 9.04056C87.8917 9.23516 89.3079 10.7811 89.8917 13.1487L90.4971 16.0676H84.8106L84.3349 13.3649C83.9241 11.6135 82.5187 10.9865 80.9404 10.9865H79.6214V16.0676H74.6485V0.932454H82.5404C87.0809 0.932454 89.8485 2.59732 89.8485 5.30002C89.8485 7.52705 87.9674 8.91083 84.8971 8.91083V9.04056ZM79.6214 7.91083H82.1079C83.816 7.91083 84.8755 7.26219 84.8755 5.88921C84.8755 4.51624 83.816 3.93786 82.1079 3.93786H79.6214V7.91083Z" fill="currentColor"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#showcase">Showcase</a>
+                <a href="#framework">Framework</a>
+                <a href="#architecture">Architecture</a>
+                <a href="#revenue">Revenue Impact</a>
+                <a href="#get-started">Get Started</a>
+            </div>
+            <a href="https://aws.amazon.com/marketplace/pp/prodview-34vmflqoi3zo4" class="nav-cta" target="_blank">Deploy from Marketplace</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="overview">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <img src="/aws+coder/aws-competency.png" alt="Coder is validated by the AWS Competency Partner Program for AI Software Competency, DevOps Software Competency, Government Software Competency, and Migration & Modernization Software Competency" class="competency-badge">
+                </div>
+                <h1>Build Enterprise Agentic AI<br>on <span class="gradient-text">AWS with Coder</span></h1>
+                <p class="hero-subtitle">
+                    Accelerate AI agent development with governed, Agent-Ready Workspaces. 
+                    Leverage AWS Bedrock, AgentCore, and the full AWS GenAI stack while maintaining 
+                    enterprise security, compliance, and developer velocity.
+                </p>
+                <div class="hero-actions">
+                    <a href="#showcase" class="btn btn-primary">See the Showcase</a>
+                    <a href="https://coder.com/docs/install/cloud/aws-marketplace" class="btn btn-secondary" target="_blank">Install from Marketplace</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-value">10x</span>
+                        <span class="stat-label">Faster Agent Development</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">100%</span>
+                        <span class="stat-label">Governed Execution</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value">250+</span>
+                        <span class="stat-label">Developer Scale</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem/Solution Section -->
+    <section class="section section-alt" id="problem">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Enterprise AI Agent Challenge</h2>
+                <p>Organizations building agentic AI face three critical gaps that limit adoption and increase risk.</p>
+            </div>
+            <div class="challenge-grid">
+                <div class="challenge-card">
+                    <div class="challenge-icon">🔒</div>
+                    <h3>Security & Governance Gap</h3>
+                    <p>AI agents executing code on developer laptops bypass enterprise security controls. No visibility into what agents access, modify, or deploy.</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="challenge-icon">⚡</div>
+                    <h3>Environment Consistency Gap</h3>
+                    <p>Agent behavior varies across inconsistent local environments. "Works on my machine" becomes "my agent produced different results."</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="challenge-icon">📈</div>
+                    <h3>Scale & Observability Gap</h3>
+                    <p>No way to run dozens of autonomous agents in parallel with resource isolation, cost attribution, and centralized monitoring.</p>
+                </div>
+            </div>
+            <div class="solution-banner">
+                <div class="solution-content">
+                    <h3>Coder + AWS: The Solution</h3>
+                    <p>Coder provides <strong>Agent-Ready Workspaces</strong> — secure, governed, cloud-native environments on AWS where AI coding agents (Kiro, Claude, Cursor, Windsurf) execute with full access to AWS services while enterprise security controls remain enforced at the infrastructure layer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section class="section" id="showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2>Live Showcase: Data Center Investments Agent</h2>
+                <p>A production-grade multi-agent application built entirely with Coder Agents in governed workspaces on AWS.</p>
+            </div>
+            
+            <div class="showcase-hero">
+                <div class="showcase-browser">
+                    <div class="browser-header">
+                        <div class="browser-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="browser-url">https://dcagent.coderdemo.io</div>
+                        <a href="https://dcagent.coderdemo.io" target="_blank" class="browser-link">Open Live Demo →</a>
+                    </div>
+                    <div class="browser-content">
+                        <div class="showcase-panels">
+                            <div class="panel panel-chat">
+                                <div class="panel-header">💬 AI Agent Chat</div>
+                                <div class="panel-body">
+                                    <div class="chat-msg chat-user">Show me Equinix credit risk analysis with current Moody's rating and leverage trends</div>
+                                    <div class="chat-msg chat-agent">
+                                        <strong>Credit Risk Analysis: Equinix (EQIX)</strong><br>
+                                        <span class="chat-badge">Moody's: Baa2 (Stable)</span><br>
+                                        Debt/EBITDA: 5.4x | PD: 0.12% | LGD: 35%<br>
+                                        <em>Leverage trending down from 5.8x over 4 quarters...</em>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-dash">
+                                <div class="panel-header">📊 Analytics Dashboard</div>
+                                <div class="panel-body">
+                                    <div class="mini-chart">
+                                        <div class="chart-bar" style="height: 60%"></div>
+                                        <div class="chart-bar" style="height: 75%"></div>
+                                        <div class="chart-bar" style="height: 45%"></div>
+                                        <div class="chart-bar" style="height: 90%"></div>
+                                        <div class="chart-bar" style="height: 70%"></div>
+                                        <div class="chart-bar" style="height: 85%"></div>
+                                    </div>
+                                    <div class="dash-metrics">
+                                        <span>6 Operators</span>
+                                        <span>5 Markets</span>
+                                        <span>3 Sub-Agents</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-integrations">
+                                <div class="panel-header">🔗 Integrations</div>
+                                <div class="panel-body">
+                                    <div class="integration-item active">Workato iPaaS ✓</div>
+                                    <div class="integration-item active">Arize Observability ✓</div>
+                                    <div class="integration-item active">Moody's CreditView ✓</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="showcase-details">
+                <div class="detail-card">
+                    <h3>🏗️ How It Was Built</h3>
+                    <p>A single prompt to a Coder Agent (Kiro) in a governed workspace produced the full-stack application — from technical design through deployed MVP — in under 2 hours.</p>
+                    <div class="code-block">
+                        <code>Analyze the Product Requirements and create a technical design, implementation plan, and MVP demo application deployed to AWS, mocking 3rd-Party integrations with Workato and Arize.</code>
+                    </div>
+                </div>
+                <div class="detail-card">
+                    <h3>🧠 Multi-Agent Architecture</h3>
+                    <ul class="feature-list">
+                        <li><strong>Supervisor Agent</strong> — Intent classification & routing (Mistral Large 3 via Bedrock)</li>
+                        <li><strong>Credit Risk Agent</strong> — Moody's ratings, PD/LGD, leverage analysis</li>
+                        <li><strong>Market Analytics Agent</strong> — Supply/demand, pricing, construction pipeline</li>
+                        <li><strong>ESG Risk Agent</strong> — PUE, carbon intensity, physical climate risk</li>
+                    </ul>
+                </div>
+                <div class="detail-card">
+                    <h3>☁️ AWS Services Used</h3>
+                    <div class="service-grid">
+                        <span class="service-tag">Bedrock Agents</span>
+                        <span class="service-tag">Bedrock AgentCore</span>
+                        <span class="service-tag">Strands SDK</span>
+                        <span class="service-tag">Lambda</span>
+                        <span class="service-tag">DynamoDB</span>
+                        <span class="service-tag">API Gateway</span>
+                        <span class="service-tag">CloudFront</span>
+                        <span class="service-tag">S3</span>
+                        <span class="service-tag">CloudWatch</span>
+                        <span class="service-tag">IAM</span>
+                        <span class="service-tag">CDK</span>
+                        <span class="service-tag">EKS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evolution: MVP-1 to MVP-2 -->
+            <div class="evolution-section">
+                <h3>Iterative Evolution with Coder Agents</h3>
+                <div class="evolution-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">MVP-1</div>
+                        <div class="timeline-content">
+                            <h4>Declarative Bedrock Agents</h4>
+                            <p>CfnAgent with OpenAPI schemas, 6 Lambda action groups, 5 CDK stacks. Full React SPA with 4-panel interface.</p>
+                            <span class="timeline-branch">branch: coder-agents-mvp</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">MVP-2</div>
+                        <div class="timeline-content">
+                            <h4>Strands Agents SDK + AgentCore Ready</h4>
+                            <p>Programmatic agents with @tool decorators, cascading fallback (AgentCore → Bedrock Agent → Mock), 7 CDK stacks. Production migration path.</p>
+                            <span class="timeline-branch">branch: coder-agents-mvp-2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="repo-link">
+                    <a href="https://github.com/greg-the-coder/aws-coder-agentic-ai-showcase" target="_blank" class="btn btn-outline">
+                        View Source on GitHub →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Framework Section -->
+    <section class="section section-dark" id="framework">
+        <div class="container">
+            <div class="section-header">
+                <h2>Migrate, Modernize, Multiply</h2>
+                <p>Coder's proven framework for transforming development environments — from local machines to enterprise-grade cloud workspaces on AWS.</p>
+            </div>
+            <div class="framework-grid">
+                <div class="framework-card migrate">
+                    <div class="framework-phase">Phase 1</div>
+                    <h3>Migrate</h3>
+                    <p class="framework-tagline">Replace local & VDI with cloud-native dev environments</p>
+                    <ul>
+                        <li>Deploy Coder via AWS Marketplace on EKS</li>
+                        <li>Replace local IDEs and VDI with browser-accessible workspaces</li>
+                        <li>Self-hosted on your AWS account — data never leaves your VPC</li>
+                        <li>Standardize on EKS, EC2, or hybrid compute</li>
+                        <li>Integrate with existing IAM, SSO, and compliance tooling</li>
+                    </ul>
+                    <div class="framework-aws">
+                        <strong>AWS Services:</strong> EKS, EC2, VPC, IAM, CloudFormation, Marketplace
+                    </div>
+                </div>
+                <div class="framework-card modernize">
+                    <div class="framework-phase">Phase 2</div>
+                    <h3>Modernize</h3>
+                    <p class="framework-tagline">Govern AI adoption at the execution layer</p>
+                    <ul>
+                        <li>Enable AI coding assistants (Kiro, Cursor, Windsurf) in governed workspaces</li>
+                        <li>Deploy Agent Firewall for process-level network & command isolation</li>
+                        <li>Centralize AI Gateway for API key management & audit trails</li>
+                        <li>MCP server administration across all workspaces</li>
+                        <li>Full visibility into AI tool usage across the organization</li>
+                    </ul>
+                    <div class="framework-aws">
+                        <strong>AWS Services:</strong> Bedrock, Kiro, CloudTrail, GuardDuty
+                    </div>
+                </div>
+                <div class="framework-card multiply">
+                    <div class="framework-phase">Phase 3</div>
+                    <h3>Multiply</h3>
+                    <p class="framework-tagline">Run autonomous agents at scale in trusted environments</p>
+                    <ul>
+                        <li>Scale to hundreds of concurrent autonomous agent sessions</li>
+                        <li>Each agent runs in isolated, resource-controlled workspace</li>
+                        <li>Integrate with Bedrock AgentCore for managed agent runtime</li>
+                        <li>Cost attribution per agent, per team, per project</li>
+                        <li>Automated pipelines: requirements → design → implementation → deployment</li>
+                    </ul>
+                    <div class="framework-aws">
+                        <strong>AWS Services:</strong> Bedrock AgentCore, Strands SDK, Lambda, Step Functions, EventBridge
+                    </div>
+                </div>
+            </div>
+            <div class="framework-resources">
+                <a href="https://coder.com/partners/aws" target="_blank" class="resource-link">Coder + AWS Partners Page →</a>
+                <a href="https://coder.com/blog/coder-achieves-aws-migration-and-modernization-competency-status" target="_blank" class="resource-link">AWS Competency Announcement →</a>
+                <a href="https://coder.com/blog/deploying-ai-agents-at-scale-without-sacrificing-control-and-governance" target="_blank" class="resource-link">Agent Governance Blog →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="section" id="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2>Reference Architecture</h2>
+                <p>Enterprise deployment on AWS via Marketplace — production-ready in under 20 minutes.</p>
+            </div>
+            
+            <div class="arch-diagram">
+                <div class="arch-layer arch-user">
+                    <div class="arch-label">Developers & Agents</div>
+                    <div class="arch-items">
+                        <div class="arch-item">Kiro (kiro.dev)</div>
+                        <div class="arch-item">Cursor / Windsurf</div>
+                        <div class="arch-item">Claude Code</div>
+                        <div class="arch-item">Coder Agents (Autonomous)</div>
+                    </div>
+                </div>
+                <div class="arch-arrow">↓</div>
+                <div class="arch-layer arch-coder">
+                    <div class="arch-label">Coder Platform (EKS via Marketplace)</div>
+                    <div class="arch-items">
+                        <div class="arch-item">Agent-Ready Workspaces</div>
+                        <div class="arch-item">Agent Firewall</div>
+                        <div class="arch-item">AI Gateway</div>
+                        <div class="arch-item">MCP Servers</div>
+                        <div class="arch-item">Governance & Audit</div>
+                    </div>
+                </div>
+                <div class="arch-arrow">↓</div>
+                <div class="arch-layer arch-aws">
+                    <div class="arch-label">AWS GenAI & Compute Services</div>
+                    <div class="arch-items">
+                        <div class="arch-item highlight">Bedrock (Foundation Models)</div>
+                        <div class="arch-item highlight">Bedrock AgentCore</div>
+                        <div class="arch-item highlight">Strands Agents SDK</div>
+                        <div class="arch-item">Lambda</div>
+                        <div class="arch-item">DynamoDB</div>
+                        <div class="arch-item">S3</div>
+                        <div class="arch-item">OpenSearch</div>
+                        <div class="arch-item">API Gateway</div>
+                        <div class="arch-item">CloudFront</div>
+                        <div class="arch-item">Step Functions</div>
+                    </div>
+                </div>
+                <div class="arch-arrow">↓</div>
+                <div class="arch-layer arch-partners">
+                    <div class="arch-label">Partner Solutions & Integrations</div>
+                    <div class="arch-items">
+                        <div class="arch-item">Workato (iPaaS)</div>
+                        <div class="arch-item">Arize (LLM Observability)</div>
+                        <div class="arch-item">Moody's (Data Provider)</div>
+                        <div class="arch-item">Slack (Collaboration)</div>
+                        <div class="arch-item">LangChain</div>
+                        <div class="arch-item">Anthropic (Claude)</div>
+                        <div class="arch-item">Mistral AI</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="install-section">
+                <h3>Marketplace Installation</h3>
+                <div class="install-steps">
+                    <div class="install-step">
+                        <span class="step-num">1</span>
+                        <div>
+                            <strong>Subscribe</strong>
+                            <p>Search "Coder" in AWS Marketplace. Zero-cost subscription.</p>
+                        </div>
+                    </div>
+                    <div class="install-step">
+                        <span class="step-num">2</span>
+                        <div>
+                            <strong>Deploy CloudFormation</strong>
+                            <p>Launch EKS stack with Karpenter auto-scaling. Default: t3.large nodes.</p>
+                        </div>
+                    </div>
+                    <div class="install-step">
+                        <span class="step-num">3</span>
+                        <div>
+                            <strong>Access Coder</strong>
+                            <p>Find CoderURL in CloudFormation outputs. Configure SSO, templates, and policies.</p>
+                        </div>
+                    </div>
+                    <div class="install-step">
+                        <span class="step-num">4</span>
+                        <div>
+                            <strong>Enable Agents</strong>
+                            <p>Deploy Agent-Ready workspace templates with Bedrock access and governance controls.</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://coder.com/docs/install/cloud/aws-marketplace" target="_blank" class="btn btn-primary">Full Installation Guide →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Revenue Impact Section -->
+    <section class="section section-alt" id="revenue">
+        <div class="container">
+            <div class="section-header">
+                <h2>AWS Revenue Impact: 250-Developer Deployment</h2>
+                <p>Estimated Annual Recurring Revenue (ARR) across AWS services for a typical enterprise Coder deployment with AI agent workloads.</p>
+            </div>
+
+            <div class="revenue-summary">
+                <div class="revenue-total">
+                    <span class="revenue-label">Estimated AWS Annual Recurring Revenue</span>
+                    <span class="revenue-amount">$1.2M – $2.0M</span>
+                    <span class="revenue-note">Per 250-developer deployment with agentic AI workloads</span>
+                </div>
+            </div>
+
+            <div class="revenue-breakdown">
+                <div class="revenue-category">
+                    <h3>Compute & Container Services</h3>
+                    <div class="revenue-line">
+                        <span>EKS Cluster (Control Plane + Worker Nodes)</span>
+                        <span class="amount">$52,000 – $88,000</span>
+                    </div>
+                    <div class="revenue-line">
+                        <span>EC2 Instances (Workspace Compute: m5.large avg per dev)</span>
+                        <span class="amount">$160,000 – $220,000</span>
+                    </div>
+                    <div class="revenue-line">
+                        <span>Lambda (Agent action groups, APIs, event handlers)</span>
+                        <span class="amount">$24,000 – $48,000</span>
+                    </div>
+                    <div class="revenue-detail">250 devs × 2 vCPU / 8GB avg × ~60% business-hours utilization + 20% off-hours agent burst</div>
+                </div>
+
+                <div class="revenue-category">
+                    <h3>AI/ML & Bedrock Services</h3>
+                    <div class="revenue-line">
+                        <span>Bedrock Model Inference (Claude, Mistral, Titan)</span>
+                        <span class="amount">$540,000 – $900,000</span>
+                    </div>
+                    <div class="revenue-line">
+                        <span>Bedrock AgentCore (Managed agent runtime)</span>
+                        <span class="amount">$96,000 – $180,000</span>
+                    </div>
+                    <div class="revenue-line">
+                        <span>Bedrock Knowledge Bases + Embeddings</span>
+                        <span class="amount">$36,000 – $72,000</span>
+                    </div>
+                    <div class="revenue-detail">250 devs × avg 400 agent sessions/month × $3–6 per session in model tokens</div>
+                </div>
+
+                <div class="revenue-category">
+                    <h3>Storage & Database</h3>
+                    <div class="revenue-line">
+                        <span>EBS (Persistent workspace volumes: 30GB gp3 per dev)</span>
+                        <span class="amount">$7,200 – $10,800</span>
+                    </div>
+                    <div class="revenue-line">
+                        <span>S3 (Artifacts, data lakes, agent outputs)</span>
+                        <span class="amount">$18,000 – $36,000</span>
+                    </div>
+                    <div class="revenue-line">
+                        <span>DynamoDB (Agent state, sessions, metrics)</span>
+                        <span class="amount">$24,000 – $48,000</span>
+                    </div>
+                    <div class="revenue-line">
+                        <span>OpenSearch Serverless (Vector store / RAG)</span>
+                        <span class="amount">$48,000 – $96,000</span>
+                    </div>
+                </div>
+
+                <div class="revenue-category">
+                    <h3>Networking & Security</h3>
+                    <div class="revenue-line">
+                        <span>VPC, NAT Gateway, PrivateLink</span>
+                        <span class="amount">$54,000 – $84,000</span>
+                    </div>
+                    <div class="revenue-line">
+                        <span>CloudFront + API Gateway</span>
+                        <span class="amount">$18,000 – $36,000</span>
+                    </div>
+                    <div class="revenue-line">
+                        <span>WAF, GuardDuty, CloudTrail, KMS</span>
+                        <span class="amount">$30,000 – $48,000</span>
+                    </div>
+                </div>
+
+                <div class="revenue-category">
+                    <h3>Observability & DevOps</h3>
+                    <div class="revenue-line">
+                        <span>CloudWatch (Logs, Metrics, X-Ray tracing)</span>
+                        <span class="amount">$36,000 – $60,000</span>
+                    </div>
+                    <div class="revenue-line">
+                        <span>CodePipeline / CodeBuild (CI/CD)</span>
+                        <span class="amount">$14,400 – $28,800</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="revenue-multiplier">
+                <h3>The Multiplier Effect</h3>
+                <div class="multiplier-grid">
+                    <div class="multiplier-item">
+                        <span class="multiplier-value">3-5x</span>
+                        <span class="multiplier-label">Agent sessions multiply Bedrock consumption vs. manual coding</span>
+                    </div>
+                    <div class="multiplier-item">
+                        <span class="multiplier-value">24/7</span>
+                        <span class="multiplier-label">Autonomous agents run outside business hours, increasing compute utilization</span>
+                    </div>
+                    <div class="multiplier-item">
+                        <span class="multiplier-value">250→1000+</span>
+                        <span class="multiplier-label">Each developer can orchestrate multiple concurrent agent workspaces</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="revenue-assumptions">
+                <h4>Assumptions</h4>
+                <ul>
+                    <li>250 developers with active Coder workspaces on EKS</li>
+                    <li>Average 2 vCPU / 8GB RAM per workspace with persistent 30GB gp3 EBS</li>
+                    <li>~60% utilization during business hours + 20% off-hours autonomous agent activity</li>
+                    <li>Each developer averages 400 AI agent sessions/month via Kiro and autonomous agents</li>
+                    <li>Mix of Claude Sonnet, Mistral Large, and Titan models via Bedrock</li>
+                    <li>Production agentic applications deployed using Lambda, DynamoDB, and Bedrock AgentCore</li>
+                    <li>Enterprise security stack: WAF, GuardDuty, CloudTrail, KMS encryption</li>
+                    <li>US-East-1 pricing, 1-year commitment where applicable</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kiro Integration Section -->
+    <section class="section" id="kiro">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kiro + Coder: AI-Native Development</h2>
+                <p>AWS's AI IDE integrated with Coder workspaces for the ultimate agentic development experience.</p>
+            </div>
+            <div class="kiro-grid">
+                <div class="kiro-card">
+                    <h3>🎯 Spec-Driven Development</h3>
+                    <p>Kiro's spec mode transforms natural language requirements into structured specs, designs, and task lists — executed by agents in Coder workspaces with full AWS service access.</p>
+                </div>
+                <div class="kiro-card">
+                    <h3>🔄 Autonomous Agent Hooks</h3>
+                    <p>Kiro's agent hooks trigger automated workflows (test generation, documentation, validation) on file changes — running securely inside governed Coder workspaces.</p>
+                </div>
+                <div class="kiro-card">
+                    <h3>🛡️ Governed Execution</h3>
+                    <p>Coder's Agent Firewall controls what Kiro agents can access at the network and process level. AI Gateway provides centralized audit trails for all LLM interactions.</p>
+                </div>
+                <div class="kiro-card">
+                    <h3>☁️ Cloud-Native Workspace</h3>
+                    <p>Kiro connects to remote Coder workspaces with full compute resources, AWS credentials via IAM roles, and direct access to Bedrock, DynamoDB, S3, and all AWS services.</p>
+                </div>
+            </div>
+            <div class="kiro-demo-link">
+                <p>The <a href="https://dcagent.coderdemo.io" target="_blank">DC Investments Agent showcase</a> was built using Kiro integrated with a Coder workspace — demonstrating the full development lifecycle from requirements to deployed application.</p>
+                <a href="https://kiro.dev" target="_blank" class="btn btn-outline">Learn about Kiro →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section section-cta" id="get-started">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Experience the Clash of Agents GameDay</h2>
+                <p>See AWS + Coder in action. Request a Clash of Agents Workshop or GameDay for your customer or team — a hands-on experience building agentic AI applications with governed workspaces on AWS.</p>
+                <div class="cta-actions">
+                    <a href="https://catalog.us-east-1.prod.workshops.aws/workshops/0e51c8ed-274c-4bf1-97b1-7758d17d5e1b/en-US" target="_blank" class="btn btn-primary btn-large">Request a GameDay for Your Team →</a>
+                    <a href="https://aws.amazon.com/marketplace/pp/prodview-34vmflqoi3zo4" target="_blank" class="btn btn-secondary btn-large">Deploy from AWS Marketplace</a>
+                </div>
+                <div class="cta-links">
+                    <a href="https://coder.com/docs/install/cloud/aws-marketplace" target="_blank">Installation Docs</a>
+                    <a href="https://github.com/greg-the-coder/aws-coder-agentic-ai-showcase" target="_blank">Showcase Repo</a>
+                    <a href="https://dcagent.coderdemo.io" target="_blank">Live Demo</a>
+                    <a href="https://kiro.dev" target="_blank">Kiro IDE</a>
+                    <a href="https://coder.com/partners/aws" target="_blank">Coder + AWS</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logos">
+                    <span>Amazon Web Services</span>
+                    <span class="footer-divider">×</span>
+                    <span>Coder</span>
+                </div>
+                <p class="footer-legal">© 2026 Coder, Inc. All rights reserved. AWS, Amazon Bedrock, and related marks are trademarks of Amazon.com, Inc. This is a partner solution brief for AWS account teams.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
