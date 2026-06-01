@@ -260,7 +260,7 @@ body {
 }
 
 .stat-value {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
     color: var(--text-heading);
 }
@@ -411,6 +411,7 @@ body {
     justify-content: center;
     background: var(--bg-section-alt);
     border-radius: var(--radius-sm);
+    color: var(--aws-blue);
 }
 
 .challenge-card h3 {
@@ -1078,6 +1079,18 @@ body {
 }
 
 /* === Revenue Section === */
+.revenue-disclaimer {
+    background: rgba(0, 108, 224, 0.04);
+    border: 1px solid rgba(0, 108, 224, 0.15);
+    border-radius: var(--radius-sm);
+    padding: 14px 20px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
 .revenue-summary {
     text-align: center;
     margin-bottom: 48px;
