@@ -862,6 +862,35 @@ body {
     color: rgba(255,255,255,0.6);
 }
 
+.framework-proof {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.proof-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.proof-stat {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--coder-ember);
+    white-space: nowrap;
+    min-width: 90px;
+}
+
+.proof-detail {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+}
+
 .framework-resources {
     display: flex;
     gap: 24px;
