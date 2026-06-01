@@ -268,3 +268,158 @@ This dashboard demonstrates that the development of a co-branded microsite — f
 - **CloudTrail + X-Ray** for audit and dependency mapping
 
 ...provides the enterprise control plane necessary to run autonomous AI agents at scale with confidence. This is the "Modernize" and "Multiply" story in practice — not theoretical, but demonstrated through the very creation of this site.
+
+---
+
+## Appendix: Coder-Native OTEL Integration with AWS CloudWatch
+
+Analysis of the [Coder open-source repository](https://github.com/coder/coder/) reveals deep, production-ready OpenTelemetry instrumentation that maps directly to AWS CloudWatch Generative AI Observability.
+
+### Coder's AI Bridge (`aibridge/`) — The Telemetry Source
+
+Coder's **AI Bridge** is an HTTP handler mounted at `/api/v2/aibridge/<provider>/*` that intercepts every AI client request. It supports: Claude Code, Codex, Kiro, Cursor, GitHub Copilot, Windsurf, Coder Agents, and more.
+
+This is the **single integration point** for all agentic AI observability — every LLM interaction in a Coder workspace passes through this bridge.
+
+### Available OTEL Trace Spans
+
+| Span Name | Context | Key Attributes |
+|-----------|---------|----------------|
+| `Intercept` | Top-level interception of AI request | `provider`, `model`, `user_id`, `streaming`, `aws_bedrock` |
+| `Intercept.RecordTokenUsage` | Token consumption per response | `type` (input/output/cache_read/cache_write) |
+| `Intercept.RecordPromptUsage` | User prompt capture | `interception_id` |
+| `Intercept.RecordToolUsage` | Tool invocations | `mcp_tool_name`, `mcp_server_name` |
+| `Intercept.RecordModelThought` | Model reasoning/thinking | reasoning content |
+| `Intercept.ProcessRequest.ToolCall` | MCP tool execution | `mcp_input`, `mcp_proxy_name`, `mcp_server_url` |
+| `Passthrough` | Non-intercepted forwarded request | `passthrough_url`, `passthrough_method` |
+| `StreamableHTTPServerProxy.Init` | MCP server initialization | `mcp_tool_count` |
+
+### Available Prometheus Metrics
+
+| Metric | Type | Labels |
+|--------|------|--------|
+| `interceptions_total` | Counter | provider, model, status, route, method, initiator_id, client |
+| `interceptions_inflight` | Gauge | provider, model, route |
+| `interceptions_duration_seconds` | Histogram | provider, model (buckets: 0.5-120s) |
+| `tokens_total` | Counter | provider, model, type (input/output/cache_read/cache_write), initiator_id, client |
+| `prompts_total` | Counter | provider, model, initiator_id, client |
+| `injected_tool_invocations_total` | Counter | provider, model, server, name |
+| `non_injected_tool_selections_total` | Counter | provider, model, name |
+| `circuit_breaker_state` | Gauge | provider, endpoint, model |
+| `circuit_breaker_trips_total` | Counter | provider, endpoint, model |
+
+### Trace Attributes for AWS Bedrock Detection
+
+Coder natively tracks an `aws_bedrock` boolean attribute on every intercepted request, enabling CloudWatch to filter and group Bedrock-specific traffic separately from other providers.
+
+### Database-Persisted Audit Trail
+
+Beyond OTEL export, the AI Bridge records to persistent database tables:
+
+| Table | Data |
+|-------|------|
+| `aibridge_interceptions` | Provider, model, initiator, timestamps, client, session |
+| `aibridge_token_usages` | Input/output/cache tokens per response |
+| `aibridge_user_prompts` | Full user prompt text |
+| `aibridge_tool_usages` | Tool name, server URL, arguments, injected flag |
+| `aibridge_model_thoughts` | Reasoning, thinking, commentary content |
+
+---
+
+### Integration Architecture: Coder to AWS CloudWatch
+
+```
+Coder Platform (EKS)
+|
+|-- AI Bridge (aibridge/)
+|     |-- OTLP/gRPC --> ADOT Collector (sidecar)
+|     |                    |-- Traces --> X-Ray
+|     |                    |-- Metrics --> CloudWatch
+|     |
+|     |-- Prometheus /metrics --> CloudWatch Agent
+|     |                             |-- EMF logs
+|     |                             |-- Custom namespace: CoderAIBridge
+|
+AWS CloudWatch GenAI Observability
+|-- X-Ray Traces (Agent spans, tool calls, trace map)
+|-- Custom Metrics (tokens_total, latency p95, error rate)
+|-- Logs Insights (prompt search, cost queries, anomaly logs)
+|-- GenAI Dashboard (prebuilt: token usage, latency, tool breakdown)
+```
+
+### Mapping: Coder Attributes to GenAI Semantic Conventions
+
+| Coder AI Bridge Attribute | OpenTelemetry GenAI Convention | CloudWatch Display |
+|---------------------------|-------------------------------|-------------------|
+| `provider` | `gen_ai.system` | Provider filter |
+| `model` | `gen_ai.request.model` | Model breakdown |
+| `tokens_total{type="input"}` | `gen_ai.usage.input_tokens` | Input token chart |
+| `tokens_total{type="output"}` | `gen_ai.usage.output_tokens` | Output token chart |
+| `interceptions_duration_seconds` | `gen_ai.client.operation.duration` | Latency panel |
+| `mcp_tool_name` | `gen_ai.tool.name` | Tool usage breakdown |
+| `user_id` / `initiator_id` | `gen_ai.user.id` | Per-user analytics |
+| `aws_bedrock` | Custom dimension | Bedrock-specific views |
+| `streaming` | `gen_ai.request.streaming` | Streaming vs sync |
+
+### Configuration (Single Environment Variable)
+
+Coder's existing OTLP exporter (`coderd/tracing/exporter.go`) requires only:
+
+```bash
+# Point Coder at the ADOT Collector
+export OTEL_EXPORTER_OTLP_ENDPOINT="http://adot-collector:4317"
+```
+
+All AI Bridge spans and the full coderd trace context will flow to CloudWatch automatically. No code changes required.
+
+### Prometheus Scrape for CloudWatch Metrics
+
+The CloudWatch Agent can scrape Coder's Prometheus `/metrics` endpoint:
+
+```yaml
+# CloudWatch Agent config excerpt
+metrics:
+  metrics_collected:
+    prometheus:
+      prometheus_config_path: /etc/prometheus/coder-scrape.yml
+      emf_processor:
+        metric_namespace: CoderAIBridge
+        metric_declaration:
+          - source_labels: [__name__]
+            label_matcher: "^(interceptions_total|tokens_total|prompts_total|injected_tool_invocations_total|circuit_breaker_.*)$"
+            dimensions: [[provider, model], [provider, model, initiator_id]]
+```
+
+---
+
+### Opportunities: What This Enables
+
+With Coder's native telemetry flowing to CloudWatch, the dashboard proposed in this document becomes **zero-custom-code**:
+
+| Dashboard Panel | Coder Telemetry Source | Custom Code Needed |
+|----------------|----------------------|-------------------|
+| LLM Token Usage | `tokens_total` metric | None - direct scrape |
+| Invocation Latency | `interceptions_duration_seconds` | None - direct scrape |
+| Tool Usage | `injected_tool_invocations_total` | None - direct scrape |
+| Per-User Cost | `tokens_total` x Bedrock pricing | Metric math only |
+| Agent Activity | `Intercept` spans via X-Ray | None - OTLP export |
+| MCP Server Health | `circuit_breaker_state` | None - direct scrape |
+| Prompt Audit | `aibridge_user_prompts` DB table | Logs Insights query |
+| Model Reasoning | `aibridge_model_thoughts` DB table | Logs Insights query |
+| Bedrock-Specific | Filter on `aws_bedrock=true` | Trace attribute filter |
+
+**Key insight: Coder already emits everything needed.** The integration is purely configuration — set the OTLP endpoint and CloudWatch Agent scrape target. No additional instrumentation libraries, no custom metric emission code, no agent modifications required.
+
+### Supported AI Clients (all telemetry-emitting)
+
+- Claude Code
+- Kiro
+- Cursor
+- Windsurf
+- GitHub Copilot (VS Code + CLI)
+- Codex (OpenAI)
+- Coder Agents (autonomous)
+- Roo Code
+- Zed
+
+Every interaction from any of these clients through a Coder workspace is captured, traced, metered, and auditable via the same CloudWatch GenAI Observability dashboard.
