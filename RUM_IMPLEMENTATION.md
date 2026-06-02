@@ -8,16 +8,142 @@
 
 ## What AWS RUM Provides
 
-CloudWatch RUM captures real browser telemetry from visitors to your site:
+For basic access metrics on a low-traffic partner microsite, **CloudFront Standard Access Logging + CloudWatch metrics is the recommended approach** — no Cognito Identity Pool required, no client-side JavaScript, no cookie consent concerns.
 
-| Category | Metrics |
-|----------|---------|
-| **Web Vitals** | LCP, FID, CLS, INP (Core Web Vitals) |
-| **Navigation** | Full page load time, resource durations, Apdex scoring |
-| **Page Views** | Count, pages/session, bounce rate |
-| **Sessions** | Total sessions, duration, geography |
-| **Errors** | JavaScript errors, HTTP 4xx/5xx, error rate per page |
-| **HTTP** | XHR/Fetch call latency, status codes, failed requests |
+---
+
+## What Was Implemented
+
+| Component | Status |
+|-----------|--------|
+| CloudFront access logging | Enabled → `s3://aws-coder-microsites-logs/cloudfront-logs/` |
+| CloudFront additional metrics | Enabled (real-time metrics subscription) |
+| Logging bucket | Created (`aws-coder-microsites-logs`) with ACLs for log delivery |
+| CloudWatch Dashboard | JSON ready (`cloudwatch-dashboard.json`) — requires `cloudwatch:PutDashboard` permission |
+
+---
+
+## Deployed: CloudFront Access Logging
+
+**Log bucket:** `s3://aws-coder-microsites-logs/cloudfront-logs/`
+**Log format:** CloudFront standard (tab-separated, gzipped)
+**Delivery delay:** 5–20 minutes after request
+
+Each log line contains:
+- Date/time, client IP, HTTP method, URI path, status code
+- Bytes transferred, time-taken, user-agent, referer
+- Edge location (geographic POP), protocol, TLS version
+- Country code (via `x-edge-location` field mapping)
+
+---
+
+## CloudWatch Dashboard (Deploy When Permissions Available)
+
+The file `cloudwatch-dashboard.json` contains a ready-to-deploy dashboard with:
+
+| Panel | Metric | View |
+|-------|--------|------|
+| Total Requests | `AWS/CloudFront` `Requests` | Time series (hourly) |
+| Bytes Downloaded | `AWS/CloudFront` `BytesDownloaded` | Time series (hourly) |
+| Error Rate (4xx + 5xx) | `4xxErrorRate` + `5xxErrorRate` | Time series |
+| Cache Hit Rate | `AWS/CloudFront` `CacheHitRate` | Time series |
+| Daily Unique Visitors (est.) | `Requests` / ~4 (avg resources per page) | Single value |
+| Weekly Request Volume | `Requests` (7-day sum) | Single value |
+| Monthly Bandwidth | `BytesDownloaded` (30-day sum) | Single value |
+
+Deploy with:
+```bash
+aws cloudwatch put-dashboard \
+  --dashboard-name "PartnerMicrosites-Analytics" \
+  --dashboard-body file://cloudwatch-dashboard.json \
+  --region us-east-1
+```
+
+---
+
+## Geographic Analysis via Athena (Access Logs)
+
+For per-country visitor breakdown, query the access logs with Athena:
+
+```sql
+-- Create table over CloudFront logs
+CREATE EXTERNAL TABLE cloudfront_logs (
+  `date` DATE,
+  time STRING,
+  x_edge_location STRING,
+  sc_bytes BIGINT,
+  c_ip STRING,
+  cs_method STRING,
+  cs_host STRING,
+  cs_uri_stem STRING,
+  sc_status INT,
+  cs_referer STRING,
+  cs_user_agent STRING,
+  cs_uri_query STRING,
+  cs_cookie STRING,
+  x_edge_result_type STRING,
+  x_edge_request_id STRING,
+  x_host_header STRING,
+  cs_protocol STRING,
+  cs_bytes BIGINT,
+  time_taken FLOAT,
+  x_forwarded_for STRING,
+  ssl_protocol STRING,
+  ssl_cipher STRING,
+  x_edge_response_result_type STRING,
+  cs_protocol_version STRING,
+  fle_status STRING,
+  fle_encrypted_fields INT,
+  c_port INT,
+  time_to_first_byte FLOAT,
+  x_edge_detailed_result_type STRING,
+  sc_content_type STRING,
+  sc_content_len BIGINT,
+  sc_range_start BIGINT,
+  sc_range_end BIGINT
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+LOCATION 's3://aws-coder-microsites-logs/cloudfront-logs/'
+TBLPROPERTIES ('skip.header.line.count'='2');
+
+-- Geographic distribution by edge location
+SELECT
+  SUBSTR(x_edge_location, 1, 3) AS edge_region,
+  COUNT(*) AS requests,
+  COUNT(DISTINCT c_ip) AS unique_visitors,
+  SUM(sc_bytes) / 1048576 AS mb_served
+FROM cloudfront_logs
+WHERE cs_uri_stem LIKE '/aws%%2Bcoder%' OR cs_uri_stem LIKE '/aws+coder%'
+GROUP BY SUBSTR(x_edge_location, 1, 3)
+ORDER BY requests DESC;
+
+-- Daily unique visitors per microsite
+SELECT
+  date,
+  CASE
+    WHEN cs_uri_stem LIKE '/aws%%2Bcoder%' OR cs_uri_stem LIKE '/aws+coder%' THEN 'aws+coder'
+    WHEN cs_uri_stem LIKE '/flywheeldata%' THEN 'flywheeldata'
+    WHEN cs_uri_stem LIKE '/wwt-fsi-bmo%' THEN 'wwt-fsi-bmo'
+    ELSE 'other'
+  END AS microsite,
+  COUNT(*) AS requests,
+  COUNT(DISTINCT c_ip) AS unique_visitors
+FROM cloudfront_logs
+GROUP BY 1, 2
+ORDER BY date DESC, requests DESC;
+```
+
+**Edge location prefix → Region mapping:**
+| Prefix | Region |
+|--------|--------|
+| IAD | US East (Virginia) |
+| DFW | US Central (Dallas) |
+| SFO | US West (San Francisco) |
+| LHR | Europe (London) |
+| FRA | Europe (Frankfurt) |
+| NRT | Asia Pacific (Tokyo) |
+| SIN | Asia Pacific (Singapore) |
+| SYD | Asia Pacific (Sydney) |
 
 All metrics publish to the `AWS/RUM` CloudWatch namespace with `application_name` dimension.
 
