@@ -206,6 +206,15 @@ body {
     margin-bottom: 28px;
 }
 
+.hero-category {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
 .competency-badge {
     max-width: 480px;
     width: 100%;
@@ -870,6 +879,37 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.governance-mnemonic {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mnemonic-item {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.4;
+}
+
+.mnemonic-item strong {
+    color: var(--coder-ember);
+}
+
+.coder-quote {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-left: 3px solid var(--coder-ember);
+    background: rgba(255, 128, 103, 0.05);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 13px;
+    font-style: italic;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
 }
 
 .proof-item {
